@@ -1,6 +1,6 @@
 from selene import browser, have
 from data.users import User, Gender, Hobby
-from utils.resourses import get_resource_path
+from utils.resources import get_resource_path
 
 
 class RegistrationPage:
@@ -81,7 +81,7 @@ class RegistrationPage:
             'Date of Birth', formatted_date,
             'Subjects', user.subject.value,
             'Hobbies', user.hobby.value,
-            'Picture', 'file_1.txt',
+            'Picture', user.picture,
             'Address', user.current_address,
             'State and City', f"{user.state} {user.city}"
         ))
