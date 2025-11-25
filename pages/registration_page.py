@@ -23,7 +23,7 @@ class RegistrationPage:
         self.value_modal_window_result = browser.all('.table-responsive tbody tr td')
 
     def open(self):
-        browser.open(f"{browser.config.base_url}/automation-practice-form")
+        browser.open("https://demoqa.com/automation-practice-form")
 
     def chose_date_of_birth(self,date_of_birth):
         browser.element('#dateOfBirthInput').click()
