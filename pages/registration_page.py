@@ -1,7 +1,6 @@
 from selene import browser, have, command
 from data.users import User, Gender, Hobby
 from utils.resources import get_resource_path
-from selene import browser
 
 from data.url import base_url
 
@@ -26,19 +25,19 @@ class RegistrationPage:
         self.value_modal_window_result = browser.all('.table-responsive tbody tr td')
 
     def open(self):
-        browser.open(base_url+'/automation-practice-form')
+        browser.open(base_url + '/automation-practice-form')
 
-    def chose_date_of_birth(self,date_of_birth):
+    def chose_date_of_birth(self, date_of_birth):
         browser.element('#dateOfBirthInput').click()
-        browser.element('.react-datepicker__month-select').all('option')[date_of_birth.month-1].click()
+        browser.element('.react-datepicker__month-select').all('option')[date_of_birth.month - 1].click()
         browser.element('.react-datepicker__year-select').element(f'option[value="{date_of_birth.year}"]').click()
         browser.element(f'.react-datepicker__day--0{date_of_birth.day}').click()
 
-    def chose_state(self,state):
+    def chose_state(self, state):
         browser.element('[class=" css-1hwfws3"]').click()
         browser.element(f'//div[contains(text(), "{state}")]').hover().click()
 
-    def choose_city(self,city):
+    def choose_city(self, city):
         browser.element('[class=" css-yk16xz-control"]').click()
         browser.element(f'//div[contains(text(), "{city}")]').hover().click()
 
@@ -57,7 +56,6 @@ class RegistrationPage:
             Hobby.MUSIC: self.check_box_hobbies_music
         }
         hobby_selectors[hobby].click()
-
 
     def register(self, user: User):
         self.field_first_name.type(user.first_name)
