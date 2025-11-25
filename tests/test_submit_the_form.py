@@ -3,7 +3,7 @@ from pages.registration_page import RegistrationPage
 from data.users import student
 
 @allure.feature("Регистрация пользователя")
-def test_student_registration_form(browser_management):
+def test_student_registration_form(setup_browser):
     registration_page = RegistrationPage()
 
     with allure.step('Открыть страницу регистрации'):

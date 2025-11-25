@@ -1,6 +1,9 @@
-from selene import browser, have
+from selene import browser, have, command
 from data.users import User, Gender, Hobby
 from utils.resources import get_resource_path
+from selene import browser
+
+from data.url import base_url
 
 
 class RegistrationPage:
@@ -23,7 +26,7 @@ class RegistrationPage:
         self.value_modal_window_result = browser.all('.table-responsive tbody tr td')
 
     def open(self):
-        browser.open("https://demoqa.com/automation-practice-form")
+        browser.open(base_url+'/automation-practice-form')
 
     def chose_date_of_birth(self,date_of_birth):
         browser.element('#dateOfBirthInput').click()
@@ -67,8 +70,10 @@ class RegistrationPage:
         self._select_hobby(user.hobby)
         self.button_picture_selection.set_value(get_resource_path(user.picture))
         self.field_current_address.type(user.current_address)
+        browser.element('[class=" css-1hwfws3"]').perform(command.js.scroll_into_view)
         self.chose_state(user.state)
         self.choose_city(user.city)
+        browser.element('#submit').perform(command.js.scroll_into_view)
         self.button_submit.click()
 
     def should_have_registered(self, user: User):
